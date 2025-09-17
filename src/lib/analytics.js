@@ -3,12 +3,12 @@
  * Cookieless, privacy-first analytics
  */
 
-export function trackBookLinkClick(bookTitle) {
+export function trackBookLinkClick(bookTitle, retailer = 'hugendubel') {
   if (window.plausible) {
     window.plausible('book_link_click', {
       props: {
         book_title: bookTitle,
-        external_link: 'hugendubel'
+        external_link: retailer
       }
     });
   }

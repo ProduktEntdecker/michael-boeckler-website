@@ -8,7 +8,8 @@ export default function BookCard({ book }) {
     : book.amazonUrl;
 
   const handleClick = () => {
-    trackBookLinkClick(book.title);
+    const retailer = book.hugendubelUrl ? 'hugendubel' : 'amazon';
+    trackBookLinkClick(book.title, retailer);
   };
 
   return (
@@ -23,9 +24,9 @@ export default function BookCard({ book }) {
       </div>
       <div className="space-y-2">
         <h3 className="font-serif text-xl font-semibold">{book.title}</h3>
-        {book.series && (
+        {book.series && book.series !== 'Standalone' && (
           <p className="text-sm text-gray-600">
-            {book.series} Band {book.seriesNumber}
+            {book.series}{book.seriesNumber ? ` Band ${book.seriesNumber}` : ''}
           </p>
         )}
         <p className="line-clamp-3 text-sm text-gray-700">{book.description}</p>
