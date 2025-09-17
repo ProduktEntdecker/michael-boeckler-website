@@ -9,7 +9,7 @@ export const books = [
     title: "Tod oder Reben",
     series: "Hippolyt Hermanus",
     seriesNumber: 1,
-    cover: "/src/assets/images/tod-oder-reben.jpg",
+    cover: "/images/tod-oder-reben.jpg",
     description: "Der erste Fall für Hippolyt Hermanus: Ein Toter im Weinberg - war es Mord? Der eigenwillige Kommissar ermittelt zwischen edlen Tropfen und alten Fehden in der malerischen Pfalz.",
     hugendubelUrl: "https://www.hugendubel.de/de/taschenbuch/michael_boeckler-tod_oder_reben-36290738-produkt-details.html",
     rowohltUrl: "https://www.rowohlt.de/taschenbuch/michael-boeckler-tod-oder-reben.html",
@@ -22,7 +22,7 @@ export const books = [
     title: "Mord in bester Lage",
     series: "Hippolyt Hermanus",
     seriesNumber: 2,
-    cover: "/src/assets/images/mord-in-bester-lage.jpg",
+    cover: "/images/mord-in-bester-lage.jpg",
     description: "Hippolyt Hermanus' zweiter Fall: In einem renommierten Weingut wird der Gutsherr tot aufgefunden. Die Spuren führen tief in die Vergangenheit einer der ältesten Winzerfamilien.",
     hugendubelUrl: "https://www.hugendubel.de/de/taschenbuch/michael_boeckler-mord_in_bester_lage-37881597-produkt-details.html",
     rowohltUrl: "https://www.rowohlt.de/taschenbuch/michael-boeckler-mord-in-bester-lage.html",
@@ -35,7 +35,7 @@ export const books = [
     title: "Mörderischer Jahrgang",
     series: "Hippolyt Hermanus",
     seriesNumber: 3,
-    cover: "/src/assets/images/moerderischer-jahrgang.jpg",
+    cover: "/images/moerderischer-jahrgang.jpg",
     description: "Der dritte Fall: Ein geheimnisvoller Jahrgang, ein verschwundener Winzer und ein Mord, der die beschauliche Weinregion erschüttert. Hermanus deckt ein Netz aus Lügen auf.",
     hugendubelUrl: "https://www.hugendubel.de/de/taschenbuch/michael_boeckler-moerderischer_jahrgang-39454766-produkt-details.html",
     rowohltUrl: "https://www.rowohlt.de/taschenbuch/michael-boeckler-moerderischer-jahrgang.html",
@@ -48,7 +48,7 @@ export const books = [
     title: "Falscher Tropfen",
     series: "Hippolyt Hermanus",
     seriesNumber: 4,
-    cover: "/src/assets/images/falscher-tropfen.jpg",
+    cover: "/images/falscher-tropfen.jpg",
     description: "Hippolyt Hermanus' vierter Fall: Ein gefälschter Jahrhundertwein, ein toter Sommelier und ein Skandal, der die Weinwelt erschüttert. Der Kommissar ermittelt in höchsten Kreisen.",
     hugendubelUrl: "https://www.hugendubel.de/de/taschenbuch/michael_boeckler-falscher_tropfen-40953638-produkt-details.html",
     rowohltUrl: "https://www.rowohlt.de/taschenbuch/michael-boeckler-falscher-tropfen.html",
@@ -61,7 +61,7 @@ export const books = [
     title: "Tödlich im Abgang",
     series: "Hippolyt Hermanus",
     seriesNumber: 5,
-    cover: "/src/assets/images/toedlich-im-abgang.jpg",
+    cover: "/images/toedlich-im-abgang.jpg",
     description: "Der fünfte Fall: Bei einer exklusiven Weinprobe stirbt ein Kritiker - Gift im Glas? Hippolyt Hermanus ermittelt zwischen Rache, Neid und einer dunklen Familiengeschichte.",
     hugendubelUrl: "https://www.hugendubel.de/de/taschenbuch/michael_boeckler-toedlich_im_abgang-42386074-produkt-details.html",
     rowohltUrl: "https://www.rowohlt.de/taschenbuch/michael-boeckler-toedlich-im-abgang.html",
@@ -72,7 +72,7 @@ export const books = [
 ];
 
 export function getBookById(id) {
-  return books.find(book => book.id === parseInt(id));
+  return books.find(book => book.id === parseInt(id, 10));
 }
 
 export function getBooksBySeries(seriesName) {
