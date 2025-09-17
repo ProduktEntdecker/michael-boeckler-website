@@ -76,13 +76,13 @@ export default function News() {
             <h3 className="font-semibold text-lg">Online-Lesung via Zoom</h3>
             <p className="text-gray-600">10. Mai 2025 • 20:00 Uhr</p>
             <p className="text-gray-700 mt-2">
-              Kostenlose Teilnahme für Newsletter-Abonnenten
+              Exklusive Online-Veranstaltung
             </p>
             <a
-              href="/newsletter"
+              href="/kontakt"
               className="link-wine text-sm mt-2 inline-block"
             >
-              Newsletter abonnieren →
+              Anmeldung anfragen →
             </a>
           </div>
         </div>

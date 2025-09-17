@@ -7,18 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brand colors
+        // Brand colors from design guide
         'black': '#000000',
-        'cream': '#FFF8F0',
-        'cream-dark': '#F5EBD9',
-        'wine-red': '#8B0000',
-        'wine-red-dark': '#660000',
-        'dark-blue': '#1E3A5F',
-        'dark-blue-dark': '#152940',
+        'cream': '#FFF8E7',
+        'cream-light': '#FFFDF7',
+        'cream-dark': '#FAF0DC',
+        'wine-red': '#722F37',
+        'wine-red-dark': '#5A242A',
+        'dark-blue': '#2C3E50',
+        'dark-blue-dark': '#1A252F',
       },
       fontFamily: {
         'serif': ['Crimson Text', 'Georgia', 'serif'],
-        'sans': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
       },
       fontSize: {
         'xs': '.75rem',

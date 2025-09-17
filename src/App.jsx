@@ -13,7 +13,6 @@ const Books = lazy(() => import('./pages/Books'))
 const About = lazy(() => import('./pages/About'))
 const News = lazy(() => import('./pages/News'))
 const Contact = lazy(() => import('./pages/Contact'))
-const Newsletter = lazy(() => import('./pages/Newsletter'))
 const Impressum = lazy(() => import('./pages/Impressum'))
 const Datenschutz = lazy(() => import('./pages/Datenschutz'))
 
@@ -29,7 +28,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <div className="min-h-screen bg-cream flex flex-col">
+        <div className="min-h-screen bg-cream-light flex flex-col">
           <Header />
           <main className="flex-grow container mx-auto px-4 py-8">
             <ErrorBoundary>
@@ -40,7 +39,6 @@ function App() {
                   <Route path="/ueber" element={<About />} />
                   <Route path="/aktuelles" element={<News />} />
                   <Route path="/kontakt" element={<Contact />} />
-                  <Route path="/newsletter" element={<Newsletter />} />
                   <Route path="/impressum" element={<Impressum />} />
                   <Route path="/datenschutz" element={<Datenschutz />} />
                 </Routes>
