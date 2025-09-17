@@ -1,16 +1,5 @@
-import { trackBookLinkClick } from '../lib/analytics';
-import { addAffiliateId } from '../lib/books';
-
 export default function BookCard({ book }) {
-  const hugendubelAffiliateId = import.meta.env.VITE_HUGENDUBEL_AFFILIATE_ID;
-  const bookUrl = book.hugendubelUrl
-    ? addAffiliateId(book.hugendubelUrl, hugendubelAffiliateId)
-    : book.amazonUrl;
-
-  const handleClick = () => {
-    const retailer = book.hugendubelUrl ? 'hugendubel' : 'amazon';
-    trackBookLinkClick(book.title, retailer);
-  };
+  const bookUrl = book.hugendubelUrl || book.amazonUrl;
 
   return (
     <article className="group book-card p-4">
@@ -35,7 +24,6 @@ export default function BookCard({ book }) {
             href={bookUrl}
             rel="noopener noreferrer"
             target="_blank"
-            onClick={handleClick}
             className="inline-flex items-center text-wine-red hover:text-wine-red-dark underline font-medium"
           >
             {book.hugendubelUrl ? 'Bei Hugendubel kaufen' : 'Bei Amazon kaufen'}

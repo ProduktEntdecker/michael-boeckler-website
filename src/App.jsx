@@ -13,7 +13,6 @@ const Books = lazy(() => import('./pages/Books'))
 const About = lazy(() => import('./pages/About'))
 const News = lazy(() => import('./pages/News'))
 const Contact = lazy(() => import('./pages/Contact'))
-const Newsletter = lazy(() => import('./pages/Newsletter'))
 const Impressum = lazy(() => import('./pages/Impressum'))
 const Datenschutz = lazy(() => import('./pages/Datenschutz'))
 
@@ -40,7 +39,6 @@ function App() {
                   <Route path="/ueber" element={<About />} />
                   <Route path="/aktuelles" element={<News />} />
                   <Route path="/kontakt" element={<Contact />} />
-                  <Route path="/newsletter" element={<Newsletter />} />
                   <Route path="/impressum" element={<Impressum />} />
                   <Route path="/datenschutz" element={<Datenschutz />} />
                 </Routes>

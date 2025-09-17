@@ -7,11 +7,10 @@ export default function Header() {
 
   const navigation = [
     { name: 'Start', href: '/' },
-    { name: 'Bücher', href: '/buecher' },
+    { name: 'Werke', href: '/buecher' },
     { name: 'Über mich', href: '/ueber' },
     { name: 'Aktuelles', href: '/aktuelles' },
     { name: 'Kontakt', href: '/kontakt' },
-    { name: 'Newsletter', href: '/newsletter' },
   ];
 
   const isActive = (href) => location.pathname === href;
