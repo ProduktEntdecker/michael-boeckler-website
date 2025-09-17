@@ -88,5 +88,5 @@ export function getLatestBook() {
 export function addAffiliateId(url, affiliateId) {
   if (!affiliateId) return url;
   const separator = url.includes('?') ? '&' : '?';
-  return `${url}${separator}partner=${affiliateId}`;
+  return `${url}${separator}partner=${encodeURIComponent(affiliateId)}`;
 }
