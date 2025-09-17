@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (targetSection) {
                 const navbar = document.querySelector('.navbar');
                 const navbarHeight = navbar ? navbar.offsetHeight : 70;
-                const targetPosition = targetSection.offsetTop - navbarHeight - 20;
+                const targetPosition = targetSection.offsetTop - navbarHeight - 10;
                 
                 window.scrollTo({
                     top: Math.max(0, targetPosition),
@@ -62,14 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             } else {
                 console.log('Target section not found:', targetId);
-                // Fallback: scroll to bottom for footer links
-                if (targetId === '#impressum' || targetId === '#datenschutz') {
-                    const sections = document.querySelectorAll('section');
-                    if (sections.length > 0) {
-                        const lastSection = sections[sections.length - 1];
-                        lastSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
             }
         });
     });
