@@ -1,0 +1,240 @@
+name: Security Audit
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run security checks daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  npm-audit:
+    runs-on: ubuntu-latest
+    name: NPM Security Audit
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Run NPM Audit
+        run: |
+          echo "🔒 Running NPM Security Audit..."
+          npm audit --audit-level=moderate || true
+
+      - name: Check for critical vulnerabilities
+        run: |
+          CRITICAL=$(npm audit --json | jq '.metadata.vulnerabilities.critical // 0')
+          HIGH=$(npm audit --json | jq '.metadata.vulnerabilities.high // 0')
+
+          if [ "$CRITICAL" -gt 0 ]; then
+            echo "❌ Critical vulnerabilities found: $CRITICAL"
+            exit 1
+          fi
+
+          if [ "$HIGH" -gt 0 ]; then
+            echo "⚠️ High vulnerabilities found: $HIGH"
+            # Don't fail on high, just warn
+          fi
+
+      - name: Create audit report
+        if: always()
+        run: |
+          npm audit --json > audit-report.json
+          npm audit > audit-report.txt
+
+      - name: Upload audit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-report
+          path: |
+            audit-report.json
+            audit-report.txt
+
+  dependency-check:
+    runs-on: ubuntu-latest
+    name: Dependency Security Check
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Check for known compromised packages
+        run: |
+          echo "🔍 Checking for compromised packages..."
+
+          # List of known compromised packages (update regularly)
+          COMPROMISED=(
+            "crypto-min"
+            "crypto-lib"
+            "node-hide"
+            "wallet-miner"
+            "ethereum-min"
+            "bitcoin-wallet"
+          )
+
+          FOUND_COMPROMISED=0
+          for pkg in "${COMPROMISED[@]}"; do
+            if grep -q "\"$pkg\"" package.json package-lock.json 2>/dev/null; then
+              echo "❌ CRITICAL: Compromised package found: $pkg"
+              FOUND_COMPROMISED=1
+            fi
+          done
+
+          if [ $FOUND_COMPROMISED -eq 1 ]; then
+            exit 1
+          fi
+
+          echo "✅ No known compromised packages found"
+
+      - name: Check for typosquatting
+        run: |
+          echo "🔍 Checking for potential typosquatting..."
+
+          # Common typosquatting patterns
+          SUSPICIOUS=(
+            "reakt"
+            "ract"
+            "expres"
+            "loadsh"
+            "mongose"
+            "axioss"
+            "requst"
+          )
+
+          for pattern in "${SUSPICIOUS[@]}"; do
+            if grep -q "\"$pattern" package.json 2>/dev/null; then
+              echo "⚠️ Possible typosquatting: $pattern found"
+              exit 1
+            fi
+          done
+
+          echo "✅ No typosquatting detected"
+
+  socket-scan:
+    runs-on: ubuntu-latest
+    name: Socket Security Scan
+    continue-on-error: true  # Don't fail the build if Socket fails
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Socket Security Scanner
+        uses: socketdev/socket-cli-action@v2
+        with:
+          # Note: Requires SOCKET_SECURITY_TOKEN secret to be set
+          # Get token from: https://socket.dev
+          socket-token: ${{ secrets.SOCKET_SECURITY_TOKEN }}
+          issue-label: 'security'
+          issue-title: 'Socket Security Alert'
+
+  snyk-scan:
+    runs-on: ubuntu-latest
+    name: Snyk Security Scan
+    continue-on-error: true  # Don't fail if Snyk is not configured
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+  lockfile-check:
+    runs-on: ubuntu-latest
+    name: Lockfile Integrity Check
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Verify lockfile integrity
+        run: |
+          echo "🔒 Verifying package-lock.json integrity..."
+          npm ci --dry-run
+          echo "✅ Lockfile integrity verified"
+
+      - name: Check for lockfile changes
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "📋 Checking for unexpected lockfile changes..."
+
+          # Get the diff of package-lock.json
+          git diff HEAD~1 package-lock.json > lockfile-diff.txt || true
+
+          if [ -s lockfile-diff.txt ]; then
+            echo "⚠️ package-lock.json has changed in this PR"
+            echo "Please review changes carefully for unexpected modifications"
+            cat lockfile-diff.txt | head -50
+          fi
+
+  create-issue:
+    runs-on: ubuntu-latest
+    needs: [npm-audit, dependency-check]
+    if: failure()
+
+    steps:
+      - name: Create security issue
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const title = '🚨 Security vulnerabilities detected';
+            const body = `
+            Security scan has detected vulnerabilities in the project.
+
+            **Workflow Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}
+
+            Please review the security reports and take appropriate action.
+
+            ### Recommended Actions:
+            1. Run \`npm audit\` locally
+            2. Review the audit report artifacts
+            3. Update dependencies if safe to do so
+            4. Consider using \`npm audit fix\` cautiously
+            `;
+
+            // Check if issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'security'
+            });
+
+            const existingIssue = issues.data.find(issue => issue.title === title);
+
+            if (!existingIssue) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['security', 'automated']
+              });
+            }

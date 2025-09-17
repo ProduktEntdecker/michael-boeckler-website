@@ -1,0 +1,22 @@
+npm warn exec The following package was not found and will be installed: @socketsecurity/cli@1.1.15
+
+  Manage Socket scans
+
+  Usage
+    $ socket scan <command>
+
+  Commands
+    create                      Create a new Socket scan and report
+    del                         Delete a scan
+    diff                        See what changed between two Scans
+    list                        List the scans for an organization
+    metadata                    Get a scan's metadata
+    report                      Check whether a scan result passes the organizational policies (security, license)
+    setup                       Start interactive configurator to customize default flag values for `socket scan` in this dir
+    view                        View the raw results of a scan
+
+  Options
+
+    --no-banner                 Hide the Socket banner
+    --no-spinner                Hide the console spinner
+
