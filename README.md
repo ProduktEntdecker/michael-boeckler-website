@@ -106,5 +106,3 @@ Follow conventional commits. See `docs/commit-conventions.md` for details.
 
 ## 📄 License
 © 2025 Michael Böckler. All rights reserved.
----
-*Last Updated: 2025-09-17 20:30:42*
