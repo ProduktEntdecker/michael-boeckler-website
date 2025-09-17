@@ -60,6 +60,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: Math.max(0, targetPosition),
                     behavior: 'smooth'
                 });
+            } else {
+                console.log('Target section not found:', targetId);
+                // Fallback: scroll to bottom for footer links
+                if (targetId === '#impressum' || targetId === '#datenschutz') {
+                    const sections = document.querySelectorAll('section');
+                    if (sections.length > 0) {
+                        const lastSection = sections[sections.length - 1];
+                        lastSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
             }
         });
     });
