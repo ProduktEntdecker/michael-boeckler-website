@@ -1,41 +1,73 @@
 /**
  * Books data model
- * Placeholder data for Michael Böckler's books
+ * Michael Böckler's published books with actual Rowohlt editions
  */
 
 export const books = [
   {
     id: 1,
-    title: "Tod im Weinberg",
+    title: "Tod oder Reben",
     series: "Hippolyt Hermanus",
     seriesNumber: 1,
-    cover: "/assets/images/tod-im-weinberg.jpg",
-    description: "Ein mysteriöser Todesfall erschüttert die idyllische Weinregion. Kommissar Hippolyt Hermanus ermittelt zwischen jahrhundertealten Reben und modernen Verbrechen.",
-    hugendubelUrl: "https://www.hugendubel.de/de/buch_gebunden/michael_boeckler-tod_im_weinberg-123456789",
-    year: 2023,
-    isbn: "978-3-123456-78-9"
+    cover: "/src/assets/images/tod-oder-reben.jpg",
+    description: "Der erste Fall für Hippolyt Hermanus: Ein Toter im Weinberg - war es Mord? Der eigenwillige Kommissar ermittelt zwischen edlen Tropfen und alten Fehden in der malerischen Pfalz.",
+    hugendubelUrl: "https://www.hugendubel.de/de/taschenbuch/michael_boeckler-tod_oder_reben-36290738-produkt-details.html",
+    rowohltUrl: "https://www.rowohlt.de/taschenbuch/michael-boeckler-tod-oder-reben.html",
+    year: 2018,
+    isbn: "978-3-499-25861-9",
+    publisher: "Rowohlt Taschenbuch"
   },
   {
     id: 2,
-    title: "Schatten über dem Kloster",
+    title: "Mord in bester Lage",
     series: "Hippolyt Hermanus",
     seriesNumber: 2,
-    cover: "/assets/images/schatten-kloster.jpg",
-    description: "Als im altehrwürdigen Kloster Sankt Bonifatius ein Mönch unter mysteriösen Umständen stirbt, führen Hermanus' Ermittlungen tief in die Vergangenheit.",
-    hugendubelUrl: "https://www.hugendubel.de/de/buch_gebunden/michael_boeckler-schatten_kloster-234567890",
-    year: 2024,
-    isbn: "978-3-234567-89-0"
+    cover: "/src/assets/images/mord-in-bester-lage.jpg",
+    description: "Hippolyt Hermanus' zweiter Fall: In einem renommierten Weingut wird der Gutsherr tot aufgefunden. Die Spuren führen tief in die Vergangenheit einer der ältesten Winzerfamilien.",
+    hugendubelUrl: "https://www.hugendubel.de/de/taschenbuch/michael_boeckler-mord_in_bester_lage-37881597-produkt-details.html",
+    rowohltUrl: "https://www.rowohlt.de/taschenbuch/michael-boeckler-mord-in-bester-lage.html",
+    year: 2019,
+    isbn: "978-3-499-26772-7",
+    publisher: "Rowohlt Taschenbuch"
   },
   {
     id: 3,
-    title: "Das Geheimnis der alten Mühle",
+    title: "Mörderischer Jahrgang",
     series: "Hippolyt Hermanus",
     seriesNumber: 3,
-    cover: "/assets/images/alte-muehle.jpg",
-    description: "Eine verlassene Mühle, ein verschwundenes Gemälde und ein Mord, der Jahrzehnte zurückliegt. Hippolyt Hermanus' bisher komplexester Fall.",
-    hugendubelUrl: "https://www.hugendubel.de/de/buch_gebunden/michael_boeckler-alte_muehle-345678901",
-    year: 2025,
-    isbn: "978-3-345678-90-1"
+    cover: "/src/assets/images/moerderischer-jahrgang.jpg",
+    description: "Der dritte Fall: Ein geheimnisvoller Jahrgang, ein verschwundener Winzer und ein Mord, der die beschauliche Weinregion erschüttert. Hermanus deckt ein Netz aus Lügen auf.",
+    hugendubelUrl: "https://www.hugendubel.de/de/taschenbuch/michael_boeckler-moerderischer_jahrgang-39454766-produkt-details.html",
+    rowohltUrl: "https://www.rowohlt.de/taschenbuch/michael-boeckler-moerderischer-jahrgang.html",
+    year: 2020,
+    isbn: "978-3-499-27177-9",
+    publisher: "Rowohlt Taschenbuch"
+  },
+  {
+    id: 4,
+    title: "Falscher Tropfen",
+    series: "Hippolyt Hermanus",
+    seriesNumber: 4,
+    cover: "/src/assets/images/falscher-tropfen.jpg",
+    description: "Hippolyt Hermanus' vierter Fall: Ein gefälschter Jahrhundertwein, ein toter Sommelier und ein Skandal, der die Weinwelt erschüttert. Der Kommissar ermittelt in höchsten Kreisen.",
+    hugendubelUrl: "https://www.hugendubel.de/de/taschenbuch/michael_boeckler-falscher_tropfen-40953638-produkt-details.html",
+    rowohltUrl: "https://www.rowohlt.de/taschenbuch/michael-boeckler-falscher-tropfen.html",
+    year: 2021,
+    isbn: "978-3-499-27349-0",
+    publisher: "Rowohlt Taschenbuch"
+  },
+  {
+    id: 5,
+    title: "Tödlich im Abgang",
+    series: "Hippolyt Hermanus",
+    seriesNumber: 5,
+    cover: "/src/assets/images/toedlich-im-abgang.jpg",
+    description: "Der fünfte Fall: Bei einer exklusiven Weinprobe stirbt ein Kritiker - Gift im Glas? Hippolyt Hermanus ermittelt zwischen Rache, Neid und einer dunklen Familiengeschichte.",
+    hugendubelUrl: "https://www.hugendubel.de/de/taschenbuch/michael_boeckler-toedlich_im_abgang-42386074-produkt-details.html",
+    rowohltUrl: "https://www.rowohlt.de/taschenbuch/michael-boeckler-toedlich-im-abgang.html",
+    year: 2022,
+    isbn: "978-3-499-27350-6",
+    publisher: "Rowohlt Taschenbuch"
   }
 ];
 
