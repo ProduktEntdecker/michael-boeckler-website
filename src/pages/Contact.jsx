@@ -22,57 +22,25 @@ export default function Contact() {
     e.preventDefault();
     setStatus('loading');
 
-    // Fallback to mailto if API is not available
-    const mailtoFallback = () => {
-      const subject = encodeURIComponent(formData.subject);
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nE-Mail: ${formData.email}\n\nNachricht:\n${formData.message}`
-      );
-      window.location.href = `mailto:kontakt@michael-boeckler.de?subject=${subject}&body=${body}`;
-
-      setStatus('success');
-      setStatusMessage('Ihr E-Mail-Programm wurde geöffnet. Bitte senden Sie die E-Mail ab.');
-    };
-
     try {
-      // Check if API endpoint exists
-      const apiAvailable = window.location.hostname !== 'localhost' &&
-                          window.location.hostname !== '127.0.0.1';
-
-      if (!apiAvailable) {
-        // In development or when API is not available, use mailto fallback
-        console.info('API not available, using mailto fallback');
-        mailtoFallback();
-        trackContactFormSubmit();
-        return;
-      }
-
-      // Try to send via API
+      // TODO: Implement actual contact form API
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData)
-      }).catch(() => null);
+      });
 
-      if (!response || !response.ok) {
-        // If API fails, use mailto fallback
-        console.warn('API request failed, using mailto fallback');
-        mailtoFallback();
-        trackContactFormSubmit();
-        return;
-      }
+      if (!response.ok) throw new Error('Failed to send message');
 
       trackContactFormSubmit();
       setStatus('success');
       setStatusMessage('Vielen Dank für Ihre Nachricht! Ich werde mich so bald wie möglich bei Ihnen melden.');
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
-      console.error('Contact form error:', error);
-      // Use mailto as ultimate fallback
-      mailtoFallback();
-      trackContactFormSubmit();
+      setStatus('error');
+      setStatusMessage('Entschuldigung, beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.');
     }
   };
 
