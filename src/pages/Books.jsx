@@ -2,8 +2,8 @@ import BookCard from '../components/BookCard';
 import { books } from '../lib/books';
 
 export default function Books() {
-  const seriesBooks = books.filter(book => book.series === 'Hippolyt Hermanus');
-  const standaloneBooks = books.filter(book => !book.series);
+  const seriesBooks = books.filter(book => book.series && book.series.includes('Hippolyt Hermanus'));
+  const standaloneBooks = books.filter(book => book.series === 'Standalone' || !book.series);
 
   return (
     <div className="max-w-7xl mx-auto">
