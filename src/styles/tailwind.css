@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for Michael Böckler website */
+/* Color Palette:
+   - Black: #000000
+   - Cream: #FFF8F0
+   - Wine Red: #8B0000
+   - Dark Blue: #1E3A5F
+*/
+
+@layer base {
+  /* Apply Crimson Text to all headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  /* Custom button styles */
+  .btn-primary {
+    @apply bg-wine-red text-white px-6 py-3 rounded hover:bg-wine-red-dark transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-dark-blue text-white px-6 py-3 rounded hover:bg-dark-blue-dark transition-colors duration-200;
+  }
+
+  /* Link styles */
+  .link-wine {
+    @apply text-wine-red underline hover:text-wine-red-dark transition-colors duration-200;
+  }
+
+  /* Card styles */
+  .book-card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300;
+  }
+}
+
+@layer utilities {
+  /* Minimalist spacing utilities */
+  .section-spacing {
+    @apply py-16 md:py-24;
+  }
+
+  /* Typography utilities */
+  .heading-xl {
+    @apply text-4xl md:text-6xl font-serif font-bold;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-serif font-semibold;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-serif font-medium;
+  }
+
+  /* Skeleton loading animation */
+  .skeleton {
+    @apply animate-pulse bg-gray-200;
+  }
+}
