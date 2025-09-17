@@ -2,8 +2,10 @@ import { trackBookLinkClick } from '../lib/analytics';
 import { addAffiliateId } from '../lib/books';
 
 export default function BookCard({ book }) {
-  const affiliateId = import.meta.env.VITE_HUGENDUBEL_AFFILIATE_ID;
-  const bookUrl = addAffiliateId(book.hugendubelUrl, affiliateId);
+  const hugendubelAffiliateId = import.meta.env.VITE_HUGENDUBEL_AFFILIATE_ID;
+  const bookUrl = book.hugendubelUrl
+    ? addAffiliateId(book.hugendubelUrl, hugendubelAffiliateId)
+    : book.amazonUrl;
 
   const handleClick = () => {
     trackBookLinkClick(book.title);
@@ -35,7 +37,7 @@ export default function BookCard({ book }) {
             onClick={handleClick}
             className="inline-flex items-center text-wine-red hover:text-wine-red-dark underline font-medium"
           >
-            Bei Hugendubel kaufen
+            {book.hugendubelUrl ? 'Bei Hugendubel kaufen' : 'Bei Amazon kaufen'}
             <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
