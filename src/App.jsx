@@ -28,7 +28,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <div className="min-h-screen bg-cream flex flex-col">
+        <div className="min-h-screen bg-cream-light flex flex-col">
           <Header />
           <main className="flex-grow container mx-auto px-4 py-8">
             <ErrorBoundary>

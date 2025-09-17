@@ -2,8 +2,8 @@ export default function BookCard({ book }) {
   const bookUrl = book.hugendubelUrl || book.amazonUrl;
 
   return (
-    <article className="group book-card p-4">
-      <div className="aspect-[3/4] overflow-hidden rounded-lg mb-4">
+    <article className="group book-card bg-white p-6 border border-gray-200 hover:border-wine-red transition-all hover:shadow-lg">
+      <div className="aspect-[3/4] overflow-hidden mb-4">
         <img
           src={book.cover}
           alt={`Cover: ${book.title}`}
@@ -12,7 +12,7 @@ export default function BookCard({ book }) {
         />
       </div>
       <div className="space-y-2">
-        <h3 className="font-serif text-xl font-semibold">{book.title}</h3>
+        <h3 className="font-serif text-xl font-semibold text-dark-blue">{book.title}</h3>
         {book.series && book.series !== 'Standalone' && (
           <p className="text-sm text-gray-600">
             {book.series}{book.seriesNumber ? ` Band ${book.seriesNumber}` : ''}

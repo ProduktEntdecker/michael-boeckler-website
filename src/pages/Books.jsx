@@ -6,14 +6,16 @@ export default function Books() {
   const standaloneBooks = books ? books.filter(book => book.series === 'Standalone' || !book.series) : [];
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <h1 className="text-4xl md:text-5xl font-serif text-center mb-12">Werke</h1>
+    <div className="max-w-7xl mx-auto -mt-8">
+      <div className="bg-cream py-12 -mx-4 px-4 mb-12">
+        <h1 className="font-serif text-5xl md:text-6xl text-center text-wine-red">Werke</h1>
+      </div>
 
       {/* Hippolyt Hermanus Serie */}
       {seriesBooks.length > 0 && (
         <section className="mb-16">
-          <h2 className="text-3xl font-serif mb-4">Die Hippolyt Hermanus Reihe</h2>
-          <p className="text-lg text-gray-700 mb-8 max-w-3xl">
+          <h2 className="font-serif text-4xl mb-6 text-dark-blue">Die Hippolyt Hermanus Reihe</h2>
+          <p className="text-lg text-gray-700 mb-10 max-w-3xl leading-relaxed">
             Folgen Sie Kommissar Hippolyt Hermanus durch spannende Fälle,
             die ihn durch malerische Weinberge und historische Städte führen.
             Jeder Band kann auch einzeln gelesen werden.
@@ -29,7 +31,7 @@ export default function Books() {
       {/* Standalone Books */}
       {standaloneBooks.length > 0 && (
         <section className="mb-16">
-          <h2 className="text-3xl font-serif mb-8">Weitere Bücher</h2>
+          <h2 className="font-serif text-4xl mb-10 text-dark-blue">Weitere Bücher</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {standaloneBooks.map(book => (
               <BookCard key={book.id} book={book} />
@@ -39,13 +41,14 @@ export default function Books() {
       )}
 
       {/* Purchase Info */}
-      <section className="mt-12 bg-gray-50 p-8 rounded-lg text-center">
-        <p className="text-gray-700">
+      <section className="mt-16 bg-white border border-gray-200 p-10 text-center">
+        <h3 className="font-serif text-2xl mb-4 text-wine-red">Erhältlich in allen Formaten</h3>
+        <p className="text-gray-700 text-lg mb-2">
           Alle Bücher sind als Hardcover, Taschenbuch und E-Book erhältlich.
         </p>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-600">
           Signierte Exemplare können über das{' '}
-          <a href="/kontakt" className="text-wine-red underline">Kontaktformular</a>{' '}
+          <a href="/kontakt" className="text-wine-red hover:text-wine-red-dark underline">Kontaktformular</a>{' '}
           angefragt werden.
         </p>
       </section>

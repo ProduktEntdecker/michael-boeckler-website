@@ -16,12 +16,12 @@ export default function Header() {
   const isActive = (href) => location.pathname === href;
 
   return (
-    <header className="bg-black text-cream">
+    <header className="bg-white border-b border-gray-200">
       <nav className="container mx-auto px-4" aria-label="Hauptnavigation">
         <div className="flex justify-between items-center h-20">
           {/* Logo/Brand */}
           <Link to="/" className="flex items-center">
-            <h1 className="font-serif text-2xl md:text-3xl font-bold">Michael Böckler</h1>
+            <h1 className="font-serif text-3xl text-wine-red">Michael Böckler</h1>
           </Link>
 
           {/* Desktop Navigation */}
@@ -32,8 +32,8 @@ export default function Header() {
                 to={item.href}
                 className={`py-2 px-1 border-b-2 transition-colors duration-200 ${
                   isActive(item.href)
-                    ? 'border-wine-red text-white'
-                    : 'border-transparent hover:border-wine-red hover:text-white'
+                    ? 'border-wine-red text-wine-red'
+                    : 'border-transparent text-gray-700 hover:border-wine-red hover:text-wine-red'
                 }`}
               >
                 {item.name}
@@ -44,7 +44,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-gray-700"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-label="Menü öffnen"
@@ -69,7 +69,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-700">
+          <div className="md:hidden border-t border-gray-200">
             <div className="py-2 space-y-1">
               {navigation.map((item) => (
                 <Link
@@ -77,8 +77,8 @@ export default function Header() {
                   to={item.href}
                   className={`block py-3 px-4 ${
                     isActive(item.href)
-                      ? 'bg-wine-red text-white'
-                      : 'hover:bg-gray-800'
+                      ? 'bg-cream text-wine-red'
+                      : 'text-gray-700 hover:bg-cream hover:text-wine-red'
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
