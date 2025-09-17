@@ -1238,6 +1238,70 @@ section {
     opacity: 1;
 }
 
+/* Legal sections styling */
+.impressum,
+.datenschutz {
+    background: var(--color-light);
+    padding: var(--space-2xl) 0;
+}
+
+.impressum {
+    background: var(--color-white);
+}
+
+.legal-content {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    text-align: left;
+}
+
+.legal-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin: var(--space-xl) 0 var(--space-md) 0;
+}
+
+.legal-content h3:first-child {
+    margin-top: 0;
+}
+
+.legal-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+}
+
+.legal-content a {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.legal-content a:hover {
+    border-bottom-color: var(--color-accent);
+}
+
+.contact-box {
+    background: var(--color-white);
+    border: 2px solid var(--color-accent);
+    border-radius: 4px;
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.contact-box h3 {
+    color: var(--color-accent);
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+}
+
+.contact-box p {
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .books-grid {

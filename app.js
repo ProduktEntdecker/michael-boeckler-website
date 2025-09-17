@@ -54,12 +54,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (targetSection) {
                 const navbar = document.querySelector('.navbar');
                 const navbarHeight = navbar ? navbar.offsetHeight : 70;
-                const targetPosition = targetSection.offsetTop - navbarHeight - 20;
+                const targetPosition = targetSection.offsetTop - navbarHeight - 10;
                 
                 window.scrollTo({
                     top: Math.max(0, targetPosition),
                     behavior: 'smooth'
                 });
+            } else {
+                console.log('Target section not found:', targetId);
             }
         });
     });
