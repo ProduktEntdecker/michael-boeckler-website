@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
+import BookCard from '../components/BookCard';
+import { getLatestBook } from '../lib/books';
 
 export default function Home() {
+  const latestBook = getLatestBook();
+
   return (
     <div className="space-y-16">
       {/* Hero Section */}
@@ -16,6 +20,24 @@ export default function Home() {
         <Link to="/buecher" className="inline-block bg-black text-white px-8 py-3 hover:bg-gray-800 transition">
           Werke entdecken
         </Link>
+      </section>
+
+      {/* Latest Book Feature */}
+      <section className="bg-gray-50 py-12 -mx-4 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-serif text-center mb-8">Aktuelles Buch</h2>
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="max-w-sm mx-auto">
+              <BookCard book={latestBook} />
+            </div>
+            <div className="space-y-4">
+              <blockquote className="text-lg italic text-gray-700 border-l-4 border-wine-red pl-4">
+                "Ein meisterhaft erzählter Krimi, der den Leser von der ersten bis zur letzten Seite fesselt."
+              </blockquote>
+              <p className="text-sm text-gray-600">— Literaturkritik</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* About Section */}
